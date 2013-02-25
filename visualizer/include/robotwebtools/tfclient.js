@@ -1,6 +1,6 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['eventemitter2','actionclient'], factory);
+    define(['robotwebtools/eventemitter2','robotwebtools/actionclient'], factory);
   }
   else {
     root.TfClient = factory(root.EventEmitter2,root.ActionClient);

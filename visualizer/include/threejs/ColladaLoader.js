@@ -6,11 +6,12 @@
     define(['three'], factory);
   }
   else {
-    factory(root.THREE);
+    root.ColladaLoader = factory(root.THREE);
   }
 }(this, function (THREE) {
 
-THREE.ColladaLoader = function () {
+//THREE.ColladaLoader = function () {
+  var ColladaLoader = function () {
 
 	var COLLADA = null;
 	var scene = null;
@@ -4503,4 +4504,5 @@ THREE.ColladaLoader = function () {
 	};
 
 };
+  return ColladaLoader;
 }));

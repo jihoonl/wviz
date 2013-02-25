@@ -6,11 +6,12 @@
     define(['three'], factory);
   }
   else {
-    factory(root.THREE);
+    root.RosAxisHelper = factory(root.THREE);
   }
 }(this, function (THREE) {
 
-  THREE.Axes = function ( options ) 
+  //THREE.Axes = function ( options ) 
+  var Axes = function ( options ) 
   {
     THREE.Object3D.call( this );
     
@@ -60,5 +61,7 @@
     addAxis( new THREE.Vector3(0,0,1) );
   };
 
-  THREE.Axes.prototype = Object.create( THREE.Object3D.prototype );
+  Axes.prototype = Object.create( THREE.Object3D.prototype );
+
+  return Axes;
 }));

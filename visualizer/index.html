@@ -2,73 +2,63 @@
 <html lang="en">
   <head>
     <title> Turtlebot Viz</title>
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <style>
-      body {
-        margin: 0px;
-        overflow: hidden;
-      }
-    </style>
-    <script src="include/robotwebtools/ros_bundle.js"></script>
-    <script src="include/robotwebtools/actionclient.js"></script>
-    <script src="include/robotwebtools/tfclient.js"></script>
-    <script src="include/threejs/three.js"></script>
-    <script src="include/threejs/ColladaLoader.js"></script>
-    <script src="include/helpers/threeinteraction.js"></script>
-    <script src="include/helpers/RosAxisHelper.js"></script>
-    <script src="include/helpers/RosOrbitControls.js"></script>
-    <script src="include/viewer3d.js"></script>
-    <script src="include/meshloader.js"></script>
+    <script src="include/require.js" data-main="include/main"></script>
     <script>
 			var ros;
 			var viewer;
 			var tfclient;
-      function init(){
-        console.log("On load");
 
-				initViewer();
-				initROS();
-//        addMesh('package://kobuki_description/meshes/base.dae');
-//        addMesh('package://kobuki_desc/meshes/base.dae');
-//        addMesh('package://kobuki_desc/meshes/wheel.dae');
-//        addMesh('package://youbot_description/meshes/youbot_base/base.dae');
-//        addMesh('package://pr2_description/meshes/base_v0/base.dae');
-//        addMesh('package://turtlebot_description/meshes/create_body.dae');
-//        addMesh('package://turtlebot_new_description/meshes/create_body.dae');
-//        addMesh('package://kobuki_description/meshes/CM.DAE');
-          addMesh('package://kobuki_description/meshes/mm.dae');
-//        addMesh('package://kobuki_description/meshes/SCALE.DAE');
-			}
-	
-			function initViewer() {
-        var container = document.getElementById("container");
-        viewer = new Viewer3D(container);
-        viewer.init();
-        viewer.resize(1024,648);
-        viewer.animate();
-      }
+      require(['domReady','robotwebtools/ros','robotwebtools/tfclient','viewer3d','meshloader'],
+          function(domReady,ROS,TfClient,Viewer3D,MeshLoader) {
 
-			function initROS() {
-				ros = new ROS();
-				ros.connect('ws://localhost:9090');
-				tfclient = new TfClient({
-					ros: ros,
-					fixedFrame: 'base_link',
-					angularThres: 1.5,
-					transThres: 0.01,
-					rate: 15.0,
-					});
-			}
+            domReady(function(){
+              console.log("On load");
 
-      function addMesh(meshurl) {
-        var objRoot = new THREE.Object3D();
-        var meshLoader = new MeshLoader('./resources/');
-        meshLoader.load(objRoot,meshurl);
-        viewer.addObject(objRoot);
-      }
+    		  		initViewer();
+		    	  	initROS();
+              addMesh('package://pr2_description/meshes/base_v0/base.dae');
+//              addUrdf();
+			      });
+
+          function initViewer() {
+            var container = document.getElementById("container");
+            viewer = new Viewer3D(container);
+            viewer.init();
+            viewer.resize(1024,648);
+            viewer.animate();
+          }
+
+          function initROS() {
+            ros = new ROS();
+            ros.connect('ws://localhost:9090');
+            tfclient = new TfClient({
+              ros: ros,
+              fixedFrame: 'base_link',
+              angularThres: 1.5,
+              transThres: 0.01,
+              rate: 15.0,
+              });
+          }
+
+          function addMesh(meshurl) {
+    //        var objRoot = new THREE.Object3D();
+            var meshLoader = new MeshLoader('./resources/');
+            var obj = meshLoader.load(meshurl);
+            viewer.addObject(obj);
+          }
+
+          /*
+          function addUrdf() {
+            var objRoot = new THREE.Object3D();
+            var meshLoader = new MeshLoader('./resources/');
+            UrdfLoader.load(objRoot,meshLoader,tfclient);
+            viewer.addObject(objRoot);
+          }*/
+        });
+
     </script>
   </head>
-  <body onload="init();">
+  <body >
     <div id="header" style="height:50px">
       <h1> Hello World</h1>
     </div>

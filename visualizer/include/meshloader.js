@@ -1,6 +1,6 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['three','colladaloader'], factory);
+    define(['three','ColladaLoader'], factory);
   }
   else {
     root.MeshLoader = factory(root.THREE, root.ColladaLoader);
@@ -19,7 +19,8 @@
       console.log( "Warning: no mesh base URL given. Will not be able to display mesh markers." );
     }   
 
-    meshLoader.load = function(objroot,resource) {
+    meshLoader.load = function(resource) {
+      var objroot = new THREE.Object3D();
       
 
       if ( meshBaseUrl == undefined )
@@ -29,7 +30,7 @@
         THREE.Mesh.call(this,new THREE.CubeGeometry(0.01, 0.01, 0.01), new THREE.MeshBasicMaterial());
       //      THREE.Object3D.call(this);
 
-        var loader = new THREE.ColladaLoader();
+        var loader = new ColladaLoader();
         var url = meshBaseUrl + resource.substr(10);
 
         var that = this;
@@ -41,6 +42,7 @@
           objroot.add(sceneObj);
         });
       }
+      return objroot;
     };
   };
 

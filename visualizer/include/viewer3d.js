@@ -1,12 +1,14 @@
 (function (root, factory) {
   if(typeof define ==='function' && define.amd) {
-    define(['three','threeinteraction'],factory);
+  console.log('here');
+    define(['three_bundle','threeinteraction'],factory);
   }
   else {
     root.Viewer3D = factory(root.THREE,root.ThreeInteraction);
   }
 }(this, function(THREE,ThreeInteraction) {
   var Viewer3D = function(container) {
+
     var viewer3d = this;
     var camera, cameraControls, scene, renderer;
     var selectableObjs;

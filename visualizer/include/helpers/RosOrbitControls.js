@@ -12,11 +12,12 @@
     define(['three'], factory);
   }
   else {
-    factory(root.THREE);
+    root.RosOrbitControls = factory(root.THREE);
   }
 }(this, function (THREE) {
 
-  THREE.RosOrbitControls = function(scene, object) {
+  //THREE.RosOrbitControls = function(scene, object) {
+  var RosOrbitControls = function(scene, object) {
   
     THREE.EventTarget.call(this);
   
@@ -375,5 +376,7 @@
     
     //this.addEventListener('touchMove', onMouseMove);
   };
+
+  return RosOrbitControls;
   
 }));

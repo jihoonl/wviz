@@ -1,17 +1,18 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['three','urdf','meshloader'], factory);
+    define(['urdf/urdf','scenenode/scenenode'], factory);
   }
   else {
-    root.UrdfLoader = factory(root.THREE, root.Urdf,root.MeshLoader);
+    root.UrdfLoader = factory(root.Urdf,root.SceneNodeHandle);
   }
-}(this, function(THREE, Urdf, MeshLoader) {
+}(this, function(Urdf) {
   var UrdfLoader = {};
 
-  UrdfLoader.load = function(objroot,meshLoader) {
+  UrdfLoader.load = function(objroot,meshLoader,tfClient) {
     
       var urdf_model = new Urdf();
       var that = this;
+      var scene_handlers = {};
       
       function urdfReady() {
         // load all models
@@ -22,7 +23,7 @@
           if(!link.visual) continue;
           if(!link.visual.geometry) continue;
           if(link.visual.geometry.type == link.visual.geometry.GeometryTypes.MESH) {
-            var frameId = new String("/"+link.name);
+            var frame_id = new String("/"+link.name);
             var uri = link.visual.geometry.filename;
 
             // ignore mesh files which are not in collada format
@@ -30,16 +31,18 @@
               console.error("Urdf Loader : " + uri + " is not a valid collada file.");
             }
 
+            var collada_model = meshLoader.load(resource);
+
+            var scene_node = new SceneNode({
+                  frame_id : frame_id,
+                  tfclient : tfClient,
+                  pose : link.visual.origin,
+                  model : collada_model});
+            objroot.add(scene_node);
           }
         }
       }
-
-      
-    }
-
-
-
-  };
+  }
 
   return UrdfLoader;
 }));
