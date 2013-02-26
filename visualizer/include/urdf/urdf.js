@@ -1,11 +1,11 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['urdflink','urdfjoint'], factory);
+    define(['urdf/urdfmaterial','urdf/urdflink','urdf/urdfjoint'], factory);
   }
   else {
-    root.Urdf = factory(root.UrdfLink,root.UrdfJoint);
+    root.Urdf = factory(root.UrdfMaterial,root.UrdfLink,root.UrdfJoint);
   }
-}(this, function(UrdfLink,UrdfJoint) {
+}(this, function(UrdfMaterial,UrdfLink,UrdfJoint) {
   var UrdfModel = function() {
     var urdf = this;
 
@@ -70,7 +70,7 @@
       }
 
       this.clear();
-      console.log('Parsing robot xml');
+      //console.log('Parsing robot xml');
 
       // Get robot name
       var name = robot_xml.getAttribute('name');
@@ -83,6 +83,28 @@
       // Get all Material elements
       for (n in robot_xml.childNodes) {
         var node = robot_xml.childNodes[n];
+        if(node.tagName != "material") continue;
+        var material_xml = node;
+        var material = new UrdfMaterial();
+
+        if(material.initXml(material_xml)) {
+          if (this.getMaterial(material.name)) {
+            console.error("material " + material.name + "is not unique.");
+            return false;
+          }
+          else {
+            this.materials_[material.name] = material;
+            //console.log('Succesfully added a new material ' + material.name);
+          }
+        }  
+        else {
+          console.error('material xml is not initialized correctly');
+          return false;
+        }
+      }
+
+      for (n in robot_xml.childNodes) {
+        var node = robot_xml.childNodes[n];
         if(node.tagName != "link") continue;
         var link_xml = node;
         var link = new UrdfLink(); 
@@ -92,16 +114,16 @@
             console.error("link " + link.name + " is not unique. ");
             return false;
           } else {
-            console.log("setting link " + link.name + " material");
+            //console.log("setting link " + link.name + " material");
             if(link.visual) {
-              if(visual.material_name.length > 0) {
+              if(link.visual.material_name.length > 0) {
                 if(this.getMaterial(link.visual.material_name)) {
-                  console.log("Setting link " + link.name + " material to " + link.visual.material_name);
+                  //console.log("Setting link " + link.name + " material to " + link.visual.material_name);
                   link.visual.material = this.getMaterial(link.visual.material_name);
                 } else {
                   if (link.visual.material) {
-                    console.log("link " + link.name + " material " + link.visual.material_name + " define in
-                    this.links_.[link.visual.material.name] = link.visual.material);
+                    //console.log("link " + link.name + " material " + link.visual.material_name + " define in Visual.");
+                    this.links_[link.visual.material.name] = link.visual.material;
                   } else {
                     console.error("link " + link.name + " material " + link.visual.material_name + " undefined.");
                     return false;
@@ -111,7 +133,7 @@
             }
 
             this.links_[link.name]= link;
-            console.log('successfully added a new link ' + link.name);
+            //console.log('successfully added a new link ' + link.name);
           }
         } else {
           console.error('link xml is not initialied correctly');
@@ -122,6 +144,7 @@
           console.error('No link elements found in urdf file');
           return false;
         }
+      }
 
         // Get all Joint elements
         for (n in robot_xml.childNodes) {
@@ -135,8 +158,8 @@
               console.error('joint ' + joint.name + ' is not unique.');
               return false;
             } else {
-              this.joints_.[joint.name] = joint;
-              console.log('successfully added a new joint ' + joint.name);
+              this.joints_[joint.name] = joint;
+              //console.log('successfully added a new joint ' + joint.name);
             }
           } else {
             console.error('joint xml is not initialized correctly');
@@ -148,11 +171,11 @@
       };
 
       this.getMaterial = function(name) {
-        return this.materials_.[name];
+        return this.materials_[name];
       };
 
       this.getLink = function(name) {
-        return this.links_.[name];
+        return this.links_[name];
       };
 
       this.getLinks = function(name) {
@@ -160,11 +183,10 @@
       };
 
       this.getJoint = function(name) {
-        return this.joints_.[name];
+        return this.joints_[name];
       };
 
 
-    };
 
   };
 

@@ -1,11 +1,11 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['three','ColladaLoader'], factory);
+    define(['three','ColladaLoader','STLLoader'], factory);
   }
   else {
-    root.MeshLoader = factory(root.THREE, root.ColladaLoader);
+    root.MeshLoader = factory(root.THREE, root.ColladaLoader,root.STLLoader);
   }
-}(this, function(THREE, ColladaLoader) {
+}(this, function(THREE, ColladaLoader,STLLoader) {
   var MeshLoader = function(meshBaseUrl) {
 
     var meshLoader = this;
@@ -21,26 +21,29 @@
 
     meshLoader.load = function(resource) {
       var objroot = new THREE.Object3D();
-      
 
       if ( meshBaseUrl == undefined )
       {
         THREE.Mesh.call(this,new THREE.CubeGeometry(0.01, 0.01, 0.01), new THREE.MeshBasicMaterial());
       } else {
-        THREE.Mesh.call(this,new THREE.CubeGeometry(0.01, 0.01, 0.01), new THREE.MeshBasicMaterial());
-      //      THREE.Object3D.call(this);
 
-        var loader = new ColladaLoader();
-        var url = meshBaseUrl + resource.substr(10);
+        var loader;
 
-        var that = this;
-
-        loader.load(url, function colladaReady(collada) {
-          var sceneObj = collada.scene;
-          console.log(collada);
-          console.log(sceneObj);
-          objroot.add(sceneObj);
-        });
+        var uri = meshBaseUrl + resource.substr(10);
+        if(uri.substr(-4).toLowerCase() == ".dae") { 
+          loader = new ColladaLoader();
+          loader.load(uri, function colladaReady(collada) {
+            var sceneObj = collada.scene;
+            objroot.add(sceneObj);
+          });
+        }
+        else if(uri.substr(-4).toLowerCase() == ".stl") {
+          loader = new STLLoader();
+          loader.load(uri,function(event) {
+              var geometry = event.content;
+              objroot.add(new THREE.Mesh(geometry));
+          });
+        }
       }
       return objroot;
     };

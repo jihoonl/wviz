@@ -157,10 +157,8 @@
 		daeScene = parseScene();
 		scene = new THREE.Object3D();
 
-		for ( var i = 0; i < daeScene.nodes.length; i ++ ) {
-
-			scene.add( createSceneGraph( daeScene.nodes[ i ] ) );
-
+  	for ( var i = 0; i < daeScene.nodes.length; i ++ ) {
+	  	scene.add( createSceneGraph( daeScene.nodes[ i ] ) );
 		}
 
 		createAnimations();

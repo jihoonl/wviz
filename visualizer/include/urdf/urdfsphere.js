@@ -28,7 +28,7 @@
 	  	if (!xml.getAttribute("radius"))
 		  {
 			  console.error("Sphere shape must have a radius attribute");
-  	  	eturn false;
+  	  	return false;
 	  	}
 
   		this.radius = parseFloat(xml.getAttribute("radius"));

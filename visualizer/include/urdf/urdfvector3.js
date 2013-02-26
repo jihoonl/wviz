@@ -5,7 +5,7 @@
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['urdfutils'],factory);
+    define(['urdf/urdfutils'],factory);
   }
   else {
     root.UrdfVector3 = factory(root.UrdfUtils);
@@ -45,4 +45,4 @@
   };
 
   return UrdfVector3;
-});
+}));

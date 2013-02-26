@@ -5,7 +5,7 @@
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['urdfutils'],factory);
+    define(['urdf/urdfutils'],factory);
   }
   else {
     root.UrdfColor = factory(root.UrdfUtils);

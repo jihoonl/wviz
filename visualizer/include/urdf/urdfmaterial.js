@@ -5,12 +5,12 @@
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['urdfutils','urdfcolor'],factory);
+    define(['urdf/urdfutils','urdf/urdfcolor'],factory);
   }
   else {
     root.UrdfVector3 = factory(root.UrdfUtils,root.UrdfColor);
   }
-}(this, function(UrdfUtils) {
+}(this, function(UrdfUtils,UrdfColor) {
 
   var UrdfMaterial = function() {
     // members

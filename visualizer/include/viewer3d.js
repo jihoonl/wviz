@@ -1,6 +1,5 @@
 (function (root, factory) {
   if(typeof define ==='function' && define.amd) {
-  console.log('here');
     define(['three_bundle','threeinteraction'],factory);
   }
   else {

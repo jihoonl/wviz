@@ -1,6 +1,6 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['urdfsphere','urdfbox','urdfcylinder','urdfmesh','urdfpose','urdfmaterial'], factory);
+    define(['urdf/urdfsphere','urdf/urdfbox','urdf/urdfcylinder','urdf/urdfmesh','urdf/urdfpose','urdf/urdfmaterial'], factory);
   }
   else {
     root.UrdfVisual = factory(root.UrdfSphere,root.UrdfBox,root.UrdfCylinder,root.UrdfMesh,root.UrdfPose,root.UrdfMaterial);
@@ -73,7 +73,7 @@
       var origins = visual_xml.getElementsByTagName("origin");
       if(origins.length==0)
       {
-        console.log("Origin tag not present for visual element, using default (Identity)");
+        //console.log("Origin tag not present for visual element, using default (Identity)");
         this.origin = new UrdfPose();
       }
       else 
@@ -90,7 +90,7 @@
       var geoms = visual_xml.getElementsByTagName("geometry");
       if(geoms.length==0)
       {
-        console.log("Geometry tag not present for visual element.");
+        //console.log("Geometry tag not present for visual element.");
       }
       else 
       {
@@ -106,7 +106,7 @@
       var materials = visual_xml.getElementsByTagName("material");
       if(materials.length==0)
       {
-        console.log("visual element has no material tag.");
+        //console.log("visual element has no material tag.");
       }
       else
       {
@@ -124,11 +124,11 @@
         // try to parse material element in place
         if (!material.initXml(material_xml))
         {
-          console.log("Could not parse material element in Visual block, maybe defined outside.");
+          //console.log("Could not parse material element in Visual block, maybe defined outside.");
         }
         else
         {
-          console.log("Parsed material element in Visual block.");
+          //console.log("Parsed material element in Visual block.");
           this.material = material;
         }
       }

@@ -5,18 +5,18 @@
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['three'],factory);
+    define(['urdf/urdfvector3'],factory);
   }
   else {
-    root.UrdfMesh = factory(root.THREE);
+    root.UrdfMesh = factory(root.UrdfVector3);
   }
-}(this, function(THREE) {
+}(this, function(UrdfVector3) {
   var UrdfMesh = function() { 
 		// members
 		this.type = 0;
 		this.GeometryTypes = {"SPHERE" : 0, "BOX" : 1, "CYLINDER" : 3, "MESH" : 4};
 		this.filename = "";
-		this.scale = new THREE.Vector3();
+		this.scale = new UrdfVector3();
 
     // methods
     this.clear = function () {

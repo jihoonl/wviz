@@ -19,7 +19,7 @@
   //THREE.RosOrbitControls = function(scene, object) {
   var RosOrbitControls = function(scene, object) {
   
-    THREE.EventTarget.call(this);
+    THREE.EventDispatcher.call(this);
   
     this.object = object;
     
@@ -174,7 +174,7 @@
     this.update = function() {
   
       var position = this.object.position;
-      var offset = position.clone().subSelf(this.center)
+      var offset = position.clone().sub(this.center);
   
       // x->y, y->z, z->x
   
@@ -203,7 +203,7 @@
       offset.x = radius * Math.sin(phi) * Math.cos(theta);
       offset.multiplyScalar(scale);
   
-      position.copy(this.center).addSelf(offset);
+      position.copy(this.center).add(offset);
   
       this.object.lookAt(this.center);
       
@@ -242,7 +242,7 @@
       var vector = new THREE.Vector3();
       var intersection = new THREE.Vector3();
   
-      vector.sub(planeOrigin, mouseRay.origin);
+      vector.subVectors(planeOrigin, mouseRay.origin);
       dot = mouseRay.direction.dot(planeNormal);
   
       // bail if ray and plane are parallel
@@ -273,7 +273,8 @@
           
           moveStartNormal = new THREE.Vector3(0,0,1);
           var rMat = new THREE.Matrix4().extractRotation( object.matrix );
-          rMat.multiplyVector3( moveStartNormal );
+//          rMat.multiplyVector3( moveStartNormal );
+          moveStartNormal.applyMatrix4(rMat);
           
           moveStartCenter=scope.center.clone();
           moveStartPosition=scope.object.position.clone();
@@ -295,7 +296,7 @@
       if (state === STATE.ROTATE) {
   
         rotateEnd.set(event.clientX, event.clientY);
-        rotateDelta.sub(rotateEnd, rotateStart);
+        rotateDelta.subVectors(rotateEnd, rotateStart);
   
         scope.rotateLeft(2 * Math.PI * rotateDelta.x / PIXELS_PER_ROUND * scope.userRotateSpeed);
         scope.rotateUp(2 * Math.PI * rotateDelta.y / PIXELS_PER_ROUND * scope.userRotateSpeed);
@@ -306,7 +307,7 @@
       } else if (state === STATE.ZOOM) {
   
         zoomEnd.set(event.clientX, event.clientY);
-        zoomDelta.sub(zoomEnd, zoomStart);
+        zoomDelta.subVectors(zoomEnd, zoomStart);
   
         if (zoomDelta.y > 0) {
   
@@ -327,10 +328,10 @@
         
         if ( !intersection ) return;
         
-        var delta = new THREE.Vector3().sub( moveStartIntersection.clone(), intersection.clone() );
+        var delta = new THREE.Vector3().subVectors( moveStartIntersection.clone(), intersection.clone() );
         
-        scope.center.add( moveStartCenter.clone(), delta.clone() );
-        scope.object.position.add( moveStartPosition.clone(), delta.clone() );
+        scope.center.addVectors( moveStartCenter.clone(), delta.clone() );
+        scope.object.position.addVectors( moveStartPosition.clone(), delta.clone() );
         scope.update();
         scope.object.updateMatrixWorld();
         this.showAxes();  
@@ -368,7 +369,7 @@
     }
   
   
-    THREE.EventTarget.call(this);
+    THREE.EventDispatcher.call(this);
     this.addEventListener('mousedown', onMouseDown);
     this.addEventListener('mouseup', onMouseUp);
     this.addEventListener('mousemove', onMouseMove);

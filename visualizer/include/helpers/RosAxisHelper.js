@@ -34,7 +34,7 @@
       var material = new THREE.MeshBasicMaterial( { color: color.getHex() } );
       
       var rot_axis = new THREE.Vector3;
-      rot_axis.cross( axis, new THREE.Vector3( 0, -1, 0 ) );
+      rot_axis.crossVectors( axis, new THREE.Vector3( 0, -1, 0 ) );
 
       var rot = new THREE.Quaternion;
       rot.setFromAxisAngle( rot_axis, 0.5*Math.PI );

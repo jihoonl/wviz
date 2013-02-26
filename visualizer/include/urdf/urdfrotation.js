@@ -5,12 +5,12 @@
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['urdfutils'],factory);
+    define(['urdf/urdfutils','urdf/urdfvector3'],factory);
   }
   else {
-    root.UrdfRotation = factory(root.UrdfUtils);
+    root.UrdfRotation = factory(root.UrdfUtils,root.UrdfVector3);
   }
-}(this, function(UrdfUtils) {
+}(this, function(UrdfUtils,UrdfVector3) {
 
   var UrdfRotation = function() {
 		// members
@@ -21,7 +21,6 @@
 
     // methods
     this.clear = function () {
-    {
       this.x = 0;
       this.y = 0;
       this.z = 0;
@@ -32,10 +31,11 @@
     
       this.clear();
     
-      var rpy = new ros.urdf.Vector3();
+      var rpy = new UrdfVector3();
     
-      if (!rpy.initString(str))
+      if (!rpy.initString(str)) {
         return false;
+      }
       else
       {
         this.setFromRPY(rpy.x,rpy.y,rpy.z);
@@ -81,4 +81,4 @@
     };
   };
   return UrdfRotation;
-});
+}));

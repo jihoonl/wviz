@@ -5,23 +5,23 @@
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['urdfvector3','urdfrotation'],factory);
+    define(['urdf/urdfvector3','urdf/urdfrotation'],factory);
   }
   else {
     root.UrdfPose = factory(root.UrdfVector3,root.UrdfRotation);
   }
-}(this, function(THREE) {                          		
+}(this, function(UrdfVector3,UrdfRotation) {                          		
 	
   var UrdfPose = function() {
   
 		// members
 		this.position = new UrdfVector3();
-		this.rotation = new UrdfRotation();
+		this.orientation = new UrdfRotation();
 
     // methods
     this.clear = function ()     {
       this.position.clear();
-      this.rotation.clear();
+      this.orientation.clear();
     };
 
     this.initXml = function (xml) {
@@ -46,16 +46,16 @@
       rpy_str = xml.getAttribute("rpy");
       if (!rpy_str)
       {
-        ros_debug("parsing pose: no rpy, using default values.");
+        console.debug("parsing pose: no rpy, using default values.");
         return true;
       }
       else
       {
-        if (!this.rotation.initString(rpy_str))
+        if (!this.orientation.initString(rpy_str))
         {
           console.error("malformed rpy");
           return false;
-          this.rotation.clear();
+          this.orientation.clear();
         }
       }
 

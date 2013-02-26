@@ -4,6 +4,7 @@ requirejs.config({
   paths: {
     three             : 'threejs/three',
     ColladaLoader     : 'threejs/ColladaLoader',
+    STLLoader         : 'threejs/STLLoader',
 
     //helpers
     RosAxisHelper     : 'helpers/RosAxisHelper',
@@ -20,6 +21,10 @@ requirejs.config({
       deps: ['three'],
       exports : 'ColladaLoader',
     },
+    'STLLoader' : {
+      deps: ['three'],
+      exports : 'STLLoader',
+    },    
     'threeinteraction' : {
       exports : 'ThreeInteraction',
     },

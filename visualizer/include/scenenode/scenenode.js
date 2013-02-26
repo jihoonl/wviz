@@ -1,11 +1,11 @@
 (function (root, factory) {
  if (typeof define === 'function' && define.amd) {
-  define(['three','eventemitter2','tfclient'],factory);
+  define(['three','robotwebtools/eventemitter2','robotwebtools/tfclient'],factory);
  }
  else {
   root.SceneNode = factory(root.THREE,root.EventEmitter2,root.TfClient);
  }
-}(this, function(EventEmitter2,TfClient) {
+}(this, function(THREE,EventEmitter2,TfClient) {
   var SceneNodeHandle = function(options) {
     THREE.Object3D.call(this);
 
@@ -20,8 +20,15 @@
     this.subscribeTf(this.frame_id);
   };
 
+  SceneNodeHandle.prototype = Object.create(THREE.Object3D.prototype);
+
   SceneNodeHandle.prototype.subscribeTf = function(frame_id) {
-    this.tf.subscribe(frame_id,this.tfUpdate.bind(this));
+    this.tfclient.subscribe(frame_id,this.tfUpdate.bind(this));
+  };
+
+  SceneNodeHandle.prototype.setPoseFromServer = function(poseMsg) {
+    this.pose.copy(poseMsg);
+    this.emitServerPoseUpdate();
   };
 
   SceneNodeHandle.prototype.tfUpdate = function(transformMsg) {
