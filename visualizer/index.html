@@ -8,7 +8,7 @@
 			var viewer;
 			var tfclient;
 
-      require(['lib/domReady','robotwebtools/ros','robotwebtools/tfclient','viewer3d','threejs/meshloader','threejs/urdfloader'],
+      require(['lib/domReady','robotwebtools/ros','robotwebtools/tfclient','visualization_three/viewer3d','visualization_three/meshloader','visualization_three/urdfloader'],
           function(domReady,ROS,TfClient,Viewer3D,MeshLoader,UrdfLoader) {
 
             domReady(function(){
@@ -19,8 +19,8 @@
 
 //              addMesh('package://pr2_description/meshes/base_v0/base.dae');
 //              addUrdf('turtlebot_description/turtlebot.urdf');
-//              addUrdf('rail_youbot_description/youbot.urdf');
-              addUrdf('pr2_description/pr2.urdf');
+              addUrdf('rail_youbot_description/youbot.urdf');
+//              addUrdf('pr2_description/pr2.urdf');
 //              addUrdf('kobuki_description/kobuki.urdf');
 			      });
 
@@ -37,7 +37,7 @@
             ros.connect('ws://localhost:9090');
             tfclient = new TfClient({
               ros: ros,
-              fixedFrame: 'odom_combined',
+              fixedFrame: 'odom',
               angularThres: 0.01,
               transThres: 0.01,
               rate: 10.0,

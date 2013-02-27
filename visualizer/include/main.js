@@ -3,15 +3,15 @@ requirejs.config({
   waitSeconds : 30,
   paths: {
     domReady          : 'lib/domReady',
-    three             : 'threejs/libs/three',
-    ColladaLoader     : 'threejs/libs/ColladaLoader',
-    STLLoader         : 'threejs/libs/STLLoader',
+    three             : 'visualization_three/libs/three',
+    ColladaLoader     : 'visualization_three/libs/ColladaLoader',
+    STLLoader         : 'visualization_three/libs/STLLoader',
 
     //helpers
-    RosAxisHelper     : 'threejs/helpers/RosAxisHelper',
-    RosOrbitControls  : 'threejs/helpers/RosOrbitControls',
-    threeinteraction  : 'threejs/helpers/threeinteraction',
-    three_bundle      : 'threejs/helpers/three_bundle',
+    RosAxisHelper     : 'visualization_three/helpers/RosAxisHelper',
+    RosOrbitControls  : 'visualization_three/helpers/RosOrbitControls',
+    threeinteraction  : 'visualization_three/helpers/threeinteraction',
+    three_bundle      : 'visualization_three/helpers/three_bundle',
   },
 
   shim : {
