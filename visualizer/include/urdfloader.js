@@ -44,7 +44,7 @@
               objroot.add(scene_node);
             }
             else if(uriends == ".stl") {
-              console.log("Not loaded : ",uri);
+//              console.log("Not loaded : ",uri);
             }
             else 
             {

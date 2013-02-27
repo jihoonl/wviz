@@ -30,7 +30,7 @@
       var xyz_str = xml.getAttribute("xyz");
       if (!xyz_str)
       {
-        console.log("parsing pose: no xyz, using default values.");
+        //console.log("parsing pose: no xyz, using default values.");
         return true;
       }
       else
@@ -46,7 +46,7 @@
       rpy_str = xml.getAttribute("rpy");
       if (!rpy_str)
       {
-        console.debug("parsing pose: no rpy, using default values.");
+        //console.log("parsing pose: no rpy, using default values.");
         return true;
       }
       else

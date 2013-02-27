@@ -58,7 +58,7 @@
 			var origins = xml.getElementsByTagName("origin");
 			if(origins.length==0)
 			{
-				console.log("Joint " + this.name + " missing origin tag under parent describing transform from Parent Link to Joint Frame, (using Identity transform).");
+				//console.log("Joint " + this.name + " missing origin tag under parent describing transform from Parent Link to Joint Frame, (using Identity transform).");
 				this.parent_to_joint_origin_transform.clear();
 			}
 			else
@@ -132,7 +132,7 @@
 				// axis
 				var axis = xml.getElementsByTagName("axis");
 				if(axis.length==0) {
-					console.log("no axis elemement for Joint link " + this.name + ", defaulting to (1,0,0) axis");
+					//console.log("no axis elemement for Joint link " + this.name + ", defaulting to (1,0,0) axis");
 					this.axis = new Vector3(1.0, 0.0, 0.0);
 				}
 				else{

@@ -32,7 +32,6 @@
   root.STLLoader = factory(root.THREE);
  }
 }(this, function(THREE) {
-  console.log(THREE);
 
   var STLLoader = function () {
 	  THREE.EventDispatcher.call(this);
