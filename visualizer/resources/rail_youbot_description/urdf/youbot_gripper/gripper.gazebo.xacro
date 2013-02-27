@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+   Author: Russell Toris, Worcester Polytechnic Institute
+  Version: July 18, 2012
+-->
+
+<robot
+  xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+  xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+  xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+  xmlns:xacro="http://ros.org/wiki/xacro" >
+
+  <xacro:macro name="rail_youbot_gripper_gazebo">
+    <gazebo reference="gripper_palm_link">
+      <material value="Gazebo/FlatBlack" />
+      <turnGravityOff>false</turnGravityOff>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+
+    <gazebo reference="gripper_finger_link_l">
+      <material value="Gazebo/FlatBlack" />
+      <turnGravityOff>false</turnGravityOff>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+
+    <gazebo reference="gripper_finger_link_r">
+      <material value="Gazebo/FlatBlack" />
+      <turnGravityOff>false</turnGravityOff>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+  </xacro:macro>
+</robot>

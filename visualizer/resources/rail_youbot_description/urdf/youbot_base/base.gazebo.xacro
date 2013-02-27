@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+   Editor: Russell Toris, Worcester Polytechnic Institute
+  Version: July 18, 2012
+-->
+
+<robot
+  xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+  xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+  xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+  xmlns:xacro="http://ros.org/wiki/xacro" >
+
+  <xacro:macro name="youbot_base_gazebo">
+    <gazebo reference="base_link">
+      <material value="rail_youbot/black" />
+    </gazebo>
+
+    <!-- position controller -->
+    <gazebo>
+      <controller:gazebo_ros_p3d name="p3d_base_controller" plugin="libgazebo_ros_p3d.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>100.0</updateRate>
+        <bodyName>base_link</bodyName>
+        <topicName>base_pose_ground_truth</topicName>
+        <gaussianNoise>0.01</gaussianNoise>
+        <frameName>map</frameName>
+        <!-- initialize odometry for fake localization-->
+        <xyzOffsets>25.7 25.7 0</xyzOffsets>
+        <rpyOffsets>0 0 0</rpyOffsets>
+        <interface:position name="p3d_base_position" />
+      </controller:gazebo_ros_p3d>
+      <canonicalBody>base_footprint</canonicalBody>
+    </gazebo>
+  </xacro:macro>
+</robot>

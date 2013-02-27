@@ -1,0 +1,16 @@
+<package>
+  <description brief="Customized youBot URDF used by the RAIL lab at WPI">A customized URDF of the Kuka youBot that contains extra features such as a Kinect camera.</description>
+  <author>Russell Toris</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes="" />
+  <url>http://ros.org/wiki/rail_youbot_description</url>
+
+  <depend package="gazebo" />
+  <depend package="youbot_description" />
+  <depend package="pr2_description" />
+  <depend package="gazebo_plugins" />
+
+  <export>
+    <gazebo gazebo_media_path="${prefix}" />
+  </export>
+</package>

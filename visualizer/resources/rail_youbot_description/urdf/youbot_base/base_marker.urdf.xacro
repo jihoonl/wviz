@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<!--
+   Author: Russell Toris, Worcester Polytechnic Institute
+  Version: July 18, 2012
+-->
+
+<robot
+  xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+  xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+  xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+  xmlns:xacro="http://ros.org/wiki/xacro" >
+
+  <property name="base_marker_radius" value="0.02" />
+  <property name="base_marker_length" value="0.001" />
+
+  <xacro:macro name="youbot_base_marker" params="name parent *origin">
+    <joint name="${name}_base_marker" type="fixed">
+      <insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="${name}_base_marker_sticker_link" />
+    </joint>
+
+    <link name="${name}_base_marker_sticker_link">
+      <inertial>
+        <mass value="0.01" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="${base_marker_radius}" length="${base_marker_length}" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="${base_marker_radius}" length="${base_marker_length}" />
+        </geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+</robot>
+

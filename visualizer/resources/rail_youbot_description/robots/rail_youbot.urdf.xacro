@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+   Author: Russell Toris, Worcester Polytechnic Institute
+  Version: July 18, 2012
+-->
+
+<robot
+  xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+  xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+  xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+  xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+  name="youbot" >
+
+  <!-- misc common stuff -->
+  <include filename="$(find youbot_description)/urdf/common.xacro" />
+  <include filename="$(find pr2_description)/urdf/common.xacro" />
+  <!-- youbot base -->
+  <include filename="$(find rail_youbot_description)/urdf/youbot_base/base.urdf.xacro" />
+  <!-- youbot plate -->
+  <include filename="$(find youbot_description)/urdf/youbot_plate/plate.urdf.xacro" /> 
+  <!-- youbot arm -->
+  <include filename="$(find youbot_description)/urdf/youbot_arm/arm.urdf.xacro"/>
+  <!-- youbot gripper -->
+  <include filename="$(find youbot_description)/urdf/youbot_gripper/gripper.urdf.xacro" />
+  <!-- generic simulator_gazebo plugins for starting mechanism control, ros time, ros battery -->
+  <include filename="$(find youbot_description)/gazebo/gazebo.urdf.xacro" />
+  <!-- materials for visualization -->
+  <include filename="$(find youbot_description)/urdf/materials.urdf.xacro" />
+  <!-- color fixes -->
+  <include filename="$(find rail_youbot_description)/urdf/youbot_plate/plate.gazebo.xacro" />
+  <include filename="$(find rail_youbot_description)/urdf/youbot_gripper/gripper.gazebo.xacro" />
+  <include filename="$(find rail_youbot_description)/urdf/youbot.gazebo.xacro" />
+  <!-- kinect -->
+  <!-- <include filename="$(find pr2_description)/urdf/sensors/head_sensor_package.urdf.xacro" /> -->
+  <include filename="$(find pr2_description)/urdf/sensors/kinect_camera.urdf.xacro" />
+  
+  <property name="front_marker_offset_x" value="0.152" />
+    <property name="front_marker_offset_y" value="0.13" />  
+    <property name="front_marker_offset_z" value="0.015" />
+  <property name="front_marker_theta" value="0.15" />
+  <property name="back_marker_offset_x" value="0.007" />
+    <property name="back_marker_offset_y" value="0.13" />  
+    <property name="back_marker_offset_z" value="0.025" />
+
+  <!-- build the robot -->
+  <xacro:youbot_base name="base"/>
+
+  <xacro:youbot_plate name="plate" parent="base_link">
+    <origin xyz="-0.159 0 0.046" rpy="0 0 0" />
+  </xacro:youbot_plate>
+  <xacro:rail_youbot_plate_gazebo />
+
+  <xacro:youbot_arm name="arm" parent="base_link">
+    <origin xyz="0.143 0 0.046" rpy="0 0 0" />
+  </xacro:youbot_arm>
+
+  <xacro:youbot_gripper name="gripper" parent="arm_link_5">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:youbot_gripper>
+  <xacro:rail_youbot_gripper_gazebo />
+
+  <!-- markers -->
+  <xacro:youbot_base_marker name="fl" parent="base_link">
+    <origin xyz="${front_marker_offset_x} ${front_marker_offset_y} ${front_marker_offset_z}" rpy="${-front_marker_theta} ${front_marker_theta} 0" />
+  </xacro:youbot_base_marker>
+  <xacro:youbot_base_marker name="fr" parent="base_link">
+    <origin xyz="${front_marker_offset_x} ${-front_marker_offset_y} ${front_marker_offset_z}" rpy="${front_marker_theta} ${front_marker_theta} 0" />
+  </xacro:youbot_base_marker>
+  <xacro:youbot_base_marker name="bl" parent="plate_link">
+    <origin xyz="${back_marker_offset_x} ${back_marker_offset_y} ${back_marker_offset_z}" rpy="0 0 0" />
+  </xacro:youbot_base_marker>
+  <xacro:youbot_base_marker name="br" parent="plate_link">
+    <origin xyz="${back_marker_offset_x} ${-back_marker_offset_y} ${back_marker_offset_z}" rpy="0 0 0" />
+  </xacro:youbot_base_marker>
+  <xacro:rail_youbot_gazebo />
+
+  <!-- attach the kinect to the robot -->
+  <xacro:kinect_camera_v0 name="youbot_base_kinect" parent="base_link" >
+    <origin xyz="-0.18 0 0.55" rpy="0 0.33 0" />
+  </xacro:kinect_camera_v0>
+</robot>

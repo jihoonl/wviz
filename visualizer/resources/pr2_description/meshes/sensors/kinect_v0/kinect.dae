@@ -8,10 +8,11 @@
         <up_axis>Y_UP</up_axis>
         <created>Thu Oct 27 19:01:12 2011</created>
         <modified>Thu Oct 27 19:01:12 2011</modified>
+        <unit name="meter" meter="0.001"/>
     </asset>
     <library_images>
         <image id="texture0" name="texture0">
-            <init_from>kinect_color.tga</init_from>
+            <init_from>kinect_color.png</init_from>
         </image>
     </library_images>
     <library_materials>
@@ -28,7 +29,7 @@
                         <format>A8R8G8B8</format>
                     </surface>
                 </newparam>
-                <newparam sid="texture0-sampler">
+                <newparam sid="texture0">
                     <sampler2D>
                         <source>texture0-surface</source>
                         <minfilter>LINEAR</minfilter>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+   Author: Russell Toris, Worcester Polytechnic Institute
+  Version: July 18, 2012
+-->
+
+<robot
+  xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+  xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+  xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+  xmlns:xacro="http://ros.org/wiki/xacro" >
+
+  <xacro:macro name="rail_youbot_plate_gazebo">
+    <gazebo reference="plate_link">
+      <material value="rail_youbot/plate" />
+    </gazebo>
+  </xacro:macro>
+</robot>

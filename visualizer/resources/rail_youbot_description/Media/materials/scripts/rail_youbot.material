@@ -1,0 +1,83 @@
+material rail_youbot/black
+{
+  receive_shadows off
+  technique
+  {
+    pass
+    {
+      ambient 0.1 0.1 0.1
+      diffuse 0.1 0.1 0.1
+      specular 0.01 0.01 0.01 1.0 1.0
+    }
+  }
+}
+
+material rail_youbot/green
+{
+  receive_shadows off
+  technique
+  {
+    pass
+    {
+      ambient 0.0 1.0 0.0
+      diffuse 0.0 1.0 0.0
+      specular 0.1 0.1 0.1 1.0 1.0
+    }
+  }
+}
+
+material rail_youbot/blue
+{
+  receive_shadows off
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 1.0
+      diffuse 0.0 0.0 1.0
+      specular 0.1 0.1 0.1 1.0 1.0
+    }
+  }
+}
+
+material rail_youbot/purple
+{
+  receive_shadows off
+  technique
+  {
+    pass
+    {
+      ambient 1.0 0.0 1.0
+      diffuse 1.0 0.0 1.0
+      specular 0.1 0.1 0.1 1.0 1.0
+    }
+  }
+}
+
+material rail_youbot/red
+{
+  receive_shadows off
+  technique
+  {
+    pass
+    {
+      ambient 1.0 0.0 0.0
+      diffuse 1.0 0.0 0.0
+      specular 0.1 0.1 0.1 1.0 1.0
+    }
+  }
+}
+
+material rail_youbot/plate
+{
+  receive_shadows off
+  technique
+  {
+    pass
+    {
+      ambient .1 .1 .1  1.0
+      diffuse .5 .5 .5  1.0
+      specular 0.1 0.1 0.1 1.0 12.5
+    }
+  }
+}
