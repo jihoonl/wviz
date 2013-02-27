@@ -367,6 +367,16 @@
       
       this.showAxes();  
     }
+
+    function onTouchDown(event) {
+      onMouseDown(event);
+      event.preventDefault();
+    }
+
+    function onTouchMove(event) {
+      onMouseMove(event);
+      event.preventDefault();
+    }
   
   
     THREE.EventDispatcher.call(this);
@@ -374,6 +384,9 @@
     this.addEventListener('mouseup', onMouseUp);
     this.addEventListener('mousemove', onMouseMove);
     this.addEventListener('mousewheel', onMouseWheel);
+
+    this.addEventListener('touchstart',onTouchDown);
+    this.addEventListener('touchmove',onTouchMove);
     
     //this.addEventListener('touchMove', onMouseMove);
   };
