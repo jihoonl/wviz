@@ -16,11 +16,11 @@
 
     		  		initViewer();
 		    	  	initROS();
+
 //              addMesh('package://pr2_description/meshes/base_v0/base.dae');
-//              addMesh('package://test.dae');
-//                addUrdf('turtlebot_description/turtlebot.urdf');
-//             addUrdf('youbot_description/youbot.urdf');
-             addUrdf('pr2_description/pr2_urdf.xml');
+//              addUrdf('turtlebot_description/turtlebot.urdf');
+//              addUrdf('youbot_description/youbot.urdf');
+              addUrdf('pr2_description/pr2_urdf.xml');
 //              addUrdf('kobuki_description/kobuki.urdf');
 			      });
 
@@ -28,7 +28,7 @@
             var container = document.getElementById("container");
             viewer = new Viewer3D(container);
             viewer.init();
-            viewer.resize(640,480);
+            viewer.resize(1024,648);
             viewer.animate();
           }
 
@@ -37,7 +37,7 @@
             ros.connect('ws://localhost:9090');
             tfclient = new TfClient({
               ros: ros,
-              fixedFrame: 'base_link',
+              fixedFrame: 'base_footprint',
               angularThres: 0.01,
               transThres: 0.01,
               rate: 10.0,

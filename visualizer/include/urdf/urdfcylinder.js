@@ -5,12 +5,12 @@
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['three'],factory);
+    define([],factory);
   }
   else {
-    root.UrdfCylinder = factory(root.THREE);
+    root.UrdfCylinder = factory();
   }
-}(this, function(THREE) {                          		
+}(this, function() {                          		
 	
   var UrdfCylinder = function() {
 		// members

@@ -19,6 +19,31 @@
       console.log( "Warning: no mesh base URL given. Will not be able to display mesh markers." );
     }   
 
+    meshLoader.getMaterial = function(material) {
+      
+      var texture_uri;
+      var texture;
+      var geomaterial;
+      if(material !== undefined)
+      {
+        if(material.texture_filename !== "")
+        {
+          texture_uri = meshBaseUrl + material.texture_filename.substr(10);
+          texture = new THREE.ImageUtils.loadTexture(texture_uri);
+          geomaterial = new THREE.MeshBasicMaterial({map:texture});
+        }
+        else {
+          var color_name = material.name.toLowerCase();
+          geomaterial = new THREE.MeshBasicMaterial({color:THREE.ColorKeywords[color_name]});
+        }
+      }
+      else {
+        geomaterial = new THREE.MeshBasicMaterial();
+      }
+
+      return geomaterial;
+    };
+
     meshLoader.load = function(resource,material) {
       var objroot = new THREE.Object3D();
 
@@ -34,22 +59,11 @@
         var texture;
         var geomaterial;
 
-        if(material !== undefined)
-        {
-          if(material.texture_filename !== "")
-          {
-            texture_uri = meshBaseUrl + material.texture_filename.substr(10);
-            texture = new THREE.ImageUtils.loadTexture(texture_uri);
-            geomaterial = new THREE.MeshBasicMaterial({map:texture});
-          }
-          else {
-            var color_name = material.name.toLowerCase();
-            geomaterial = new THREE.MeshBasicMaterial({color:THREE.ColorKeywords[color_name]});
-          }
-        }
-        else {
-          geomaterial = new THREE.MeshBasicMaterial();
-        }
+
+
+        // Collision model visualization support. This is not necessary for now.
+        // geomaterial = this.getMaterial(material); 
+        
         if(uri.substr(-4).toLowerCase() == ".dae") { 
           loader = new ColladaLoader();
           loader.load(uri, function colladaReady(collada) {
@@ -59,6 +73,8 @@
             objroot.add(sceneObj);
           });
         }
+        /*
+           STL Support. Collision model. It is not necessary yet
         else if(uri.substr(-4).toLowerCase() == ".stl") {
           loader = new STLLoader();
           loader.load(uri,function(event) {
@@ -66,6 +82,7 @@
               objroot.add(new THREE.Mesh(geometry));
           });
         }
+        */
       }
       return objroot;
     };

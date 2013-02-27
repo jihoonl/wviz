@@ -13,6 +13,8 @@
       var urdf_model = new Urdf();
       var that = this;
       var scene_handlers = {};
+
+      urdf_model.initFile(urdf_src,urdfReady);
       
       function urdfReady() {
         // load all models
@@ -25,10 +27,10 @@
           if(link.visual.geometry.type == link.visual.geometry.GeometryTypes.MESH) {
             var frame_id = new String("/"+link.name);
             var uri = link.visual.geometry.filename;
-
+            var uriends = uri.substr(-4).toLowerCase();
+            
             // ignore mesh files which are not in collada format
-            if(uri.substr(-4).toLowerCase() == ".dae" || uri.substr(-4).toLowerCase() == ".stl") {
-//              console.error("Urdf Loader : " + uri + " is not a valid collada file.");
+            if(uriends == ".dae") {
               var material_name = link.visual.material_name;
               var material = urdf_model.getMaterial(material_name);
               
@@ -41,14 +43,16 @@
                     model : collada_model});
               objroot.add(scene_node);
             }
-            else {
+            else if(uriends == ".stl") {
+              console.log("Not loaded : ",uri);
+            }
+            else 
+            {
               console.log("Not Supported format : ",uri);
             }
           }
         }
       }
-
-      urdf_model.initFile(urdf_src,urdfReady);
   }
 
   return UrdfLoader;
