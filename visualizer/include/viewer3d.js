@@ -38,6 +38,7 @@
       directionalLight = new THREE.DirectionalLight(0xffffff);
       scene.add(directionalLight);
 
+
       // add x/y grid
       var numCells = 50;
       var gridGeom = new THREE.PlaneGeometry(numCells,numCells,numCells,numCells);

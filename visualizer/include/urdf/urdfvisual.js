@@ -1,6 +1,6 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['urdf/urdfsphere','urdf/urdfbox','urdf/urdfcylinder','urdf/urdfmesh','urdf/urdfpose','urdf/urdfmaterial'], factory);
+    define(['./urdfsphere','./urdfbox','./urdfcylinder','./urdfmesh','./urdfpose','./urdfmaterial'], factory);
   }
   else {
     root.UrdfVisual = factory(root.UrdfSphere,root.UrdfBox,root.UrdfCylinder,root.UrdfMesh,root.UrdfPose,root.UrdfMaterial);

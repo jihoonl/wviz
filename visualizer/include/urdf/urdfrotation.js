@@ -5,7 +5,7 @@
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['urdf/urdfutils','urdf/urdfvector3'],factory);
+    define(['./urdfutils','./urdfvector3'],factory);
   }
   else {
     root.UrdfRotation = factory(root.UrdfUtils,root.UrdfVector3);

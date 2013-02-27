@@ -5,7 +5,7 @@
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['urdf/urdfutils','urdf/urdfcolor'],factory);
+    define(['./urdfutils','./urdfcolor'],factory);
   }
   else {
     root.UrdfVector3 = factory(root.UrdfUtils,root.UrdfColor);

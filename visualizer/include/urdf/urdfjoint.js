@@ -5,7 +5,7 @@
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['urdf/urdfpose','urdf/urdfvector3'],factory);
+    define(['./urdfpose','./urdfvector3'],factory);
   }
   else {
     root.UrdfJoint = factory(root.UrdfPose,root.UrdfVector3);

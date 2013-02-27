@@ -5,7 +5,7 @@
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['urdf/urdfvector3'],factory);
+    define(['./urdfvector3'],factory);
   }
   else {
     root.UrdfBox = factory(root.UrdfVector3);

@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     <title> Turtlebot Viz</title>
-    <script src="include/require.js" data-main="include/main"></script>
+    <script src="include/lib/require.js" data-main="include/main"></script>
     <script>
 			var ros;
 			var viewer;
 			var tfclient;
 
-      require(['domReady','robotwebtools/ros','robotwebtools/tfclient','viewer3d','meshloader','urdfloader'],
+      require(['lib/domReady','robotwebtools/ros','robotwebtools/tfclient','viewer3d','threejs/meshloader','threejs/urdfloader'],
           function(domReady,ROS,TfClient,Viewer3D,MeshLoader,UrdfLoader) {
 
             domReady(function(){

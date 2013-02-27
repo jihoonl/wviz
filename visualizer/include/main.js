@@ -2,15 +2,16 @@ requirejs.config({
   enforceDefine : false,
   waitSeconds : 30,
   paths: {
-    three             : 'threejs/three',
-    ColladaLoader     : 'threejs/ColladaLoader',
-    STLLoader         : 'threejs/STLLoader',
+    domReady          : 'lib/domReady',
+    three             : 'threejs/libs/three',
+    ColladaLoader     : 'threejs/libs/ColladaLoader',
+    STLLoader         : 'threejs/libs/STLLoader',
 
     //helpers
-    RosAxisHelper     : 'helpers/RosAxisHelper',
-    RosOrbitControls  : 'helpers/RosOrbitControls',
-    threeinteraction  : 'helpers/threeinteraction',
-    three_bundle      : 'helpers/three_bundle',
+    RosAxisHelper     : 'threejs/helpers/RosAxisHelper',
+    RosOrbitControls  : 'threejs/helpers/RosOrbitControls',
+    threeinteraction  : 'threejs/helpers/threeinteraction',
+    three_bundle      : 'threejs/helpers/three_bundle',
   },
 
   shim : {
@@ -31,6 +32,10 @@ requirejs.config({
     'three_bundle' : {
       deps : ['three','RosAxisHelper','RosOrbitControls'],
       exports : 'THREE_BUNDLE',
+    },
+    
+    'domReady' : {
+      exports : 'domReady',
     },
   }
 });

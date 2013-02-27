@@ -1,6 +1,6 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['urdf/urdfvisual'],factory);
+    define(['./urdfvisual'],factory);
   }
   else {
     root.UrdfLink = factory(root.UrdfVisual);
