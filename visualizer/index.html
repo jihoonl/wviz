@@ -19,8 +19,8 @@
 
 //              addMesh('package://pr2_description/meshes/base_v0/base.dae');
 //              addUrdf('turtlebot_description/turtlebot.urdf');
-//              addUrdf('youbot_description/youbot.urdf');
-              addUrdf('pr2_description/pr2_urdf.xml');
+              addUrdf('rail_youbot_description/youbot.urdf');
+//              addUrdf('pr2_description/pr2_urdf.xml');
 //              addUrdf('kobuki_description/kobuki.urdf');
 			      });
 
@@ -37,7 +37,7 @@
             ros.connect('ws://localhost:9090');
             tfclient = new TfClient({
               ros: ros,
-              fixedFrame: 'base_footprint',
+              fixedFrame: 'base_link',
               angularThres: 0.01,
               transThres: 0.01,
               rate: 10.0,

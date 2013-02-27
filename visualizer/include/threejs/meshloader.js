@@ -73,8 +73,8 @@
             objroot.add(sceneObj);
           });
         }
+      //     STL Support. Collision model. It is not necessary yet
         /*
-           STL Support. Collision model. It is not necessary yet
         else if(uri.substr(-4).toLowerCase() == ".stl") {
           loader = new STLLoader();
           loader.load(uri,function(event) {

@@ -43,9 +43,19 @@
                     model : collada_model});
               objroot.add(scene_node);
             }
+            /*
             else if(uriends == ".stl") {
 //              console.log("Not loaded : ",uri);
+              var collada_model = meshLoader.load(uri,material);
+
+              var scene_node = new SceneNode({
+                    frame_id : frame_id,
+                    tfclient : tfClient,
+                    pose : link.visual.origin,
+                    model : collada_model});
+              objroot.add(scene_node);
             }
+            */
             else 
             {
               console.log("Not Supported format : ",uri);
