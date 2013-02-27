@@ -860,8 +860,8 @@
 		if ( options.centerGeometry && obj.geometry ) {
 
 			var delta = THREE.GeometryUtils.center( obj.geometry );
-			obj.quaternion.multiplyVector3( delta.multiplySelf( obj.scale ) );
-			obj.position.subSelf( delta );
+			obj.quaternion.multiplyVector3( delta.multiply( obj.scale ) );
+			obj.position.sub( delta );
 
 		}
 
@@ -1957,7 +1957,7 @@
 
 			case 'matrix':
 
-				matrix.multiplySelf( this.obj );
+				matrix.multiply( this.obj );
 				break;
 
 			case 'translate':

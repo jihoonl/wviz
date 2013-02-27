@@ -29,7 +29,10 @@
             // ignore mesh files which are not in collada format
             if(uri.substr(-4).toLowerCase() == ".dae" || uri.substr(-4).toLowerCase() == ".stl") {
 //              console.error("Urdf Loader : " + uri + " is not a valid collada file.");
-              var collada_model = meshLoader.load(uri);
+              var material_name = link.visual.material_name;
+              var material = urdf_model.getMaterial(material_name);
+              
+              var collada_model = meshLoader.load(uri,material);
 
               var scene_node = new SceneNode({
                     frame_id : frame_id,

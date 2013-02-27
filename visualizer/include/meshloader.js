@@ -19,7 +19,7 @@
       console.log( "Warning: no mesh base URL given. Will not be able to display mesh markers." );
     }   
 
-    meshLoader.load = function(resource) {
+    meshLoader.load = function(resource,material) {
       var objroot = new THREE.Object3D();
 
       if ( meshBaseUrl == undefined )
@@ -30,10 +30,32 @@
         var loader;
 
         var uri = meshBaseUrl + resource.substr(10);
+        var texture_uri;
+        var texture;
+        var geomaterial;
+
+        if(material !== undefined)
+        {
+          if(material.texture_filename !== "")
+          {
+            texture_uri = meshBaseUrl + material.texture_filename.substr(10);
+            texture = new THREE.ImageUtils.loadTexture(texture_uri);
+            geomaterial = new THREE.MeshBasicMaterial({map:texture});
+          }
+          else {
+            var color_name = material.name.toLowerCase();
+            geomaterial = new THREE.MeshBasicMaterial({color:THREE.ColorKeywords[color_name]});
+          }
+        }
+        else {
+          geomaterial = new THREE.MeshBasicMaterial();
+        }
         if(uri.substr(-4).toLowerCase() == ".dae") { 
           loader = new ColladaLoader();
           loader.load(uri, function colladaReady(collada) {
             var sceneObj = collada.scene;
+//            sceneObj.children[0].material = geomaterial;
+
             objroot.add(sceneObj);
           });
         }

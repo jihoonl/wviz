@@ -73,7 +73,7 @@
       var origins = visual_xml.getElementsByTagName("origin");
       if(origins.length==0)
       {
-        //console.log("Origin tag not present for visual element, using default (Identity)");
+        ////console.log("Origin tag not present for visual element, using default (Identity)");
         this.origin = new UrdfPose();
       }
       else 
@@ -88,9 +88,10 @@
 
       // Geometry
       var geoms = visual_xml.getElementsByTagName("geometry");
+      //console.log(geoms);
       if(geoms.length==0)
       {
-        //console.log("Geometry tag not present for visual element.");
+        ////console.log("Geometry tag not present for visual element.");
       }
       else 
       {
