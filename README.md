@@ -1,13 +1,11 @@
-WVIZ
+WVIZ - 3D Robot Web Visualizer
 ====
-
-# Robot Web Visualization ####
 
 The goal of this project is to provide a ROS(Robot Operating System) web 3d visualization library using WebGL. 
 
-## Usage ###
+### Usage ###
 
-## Required Components in Backend ###
+### Required Components in Backend ###
 
 A robot powered by ROS, Rosbridge, TF2 Web Republisher
 
@@ -18,8 +16,8 @@ A robot powered by ROS, Rosbridge, TF2 Web Republisher
 * roslaunch rosbridge_server rosbridge_websocket.launch
 * rosrun tf2_web_republisher tf2_web_republisher
 
-## Frontend ###
-### Libraries in use
+### Frontend ###
+#### Libraries in use
 - Three.js : https://github.com/mrdoob/three.js
 - RobotWebtools : https://github.com/RobotWebtools
 - Require.js : http://requirejs.org/
