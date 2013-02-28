@@ -13,8 +13,10 @@ A robot powered by ROS, Rosbridge, TF2 Web Republisher
 - rosbridge           : https://www.rosbridge.org
 - TF2 WebRepublisher  : https://github.com/RobotWebTools/tf2_web_republisher
 
-* roslaunch rosbridge_server rosbridge_websocket.launch
-* rosrun tf2_web_republisher tf2_web_republisher
+<pre>
+> roslaunch rosbridge_server rosbridge_websocket.launch
+> rosrun tf2_web_republisher tf2_web_republisher
+</pre>
 
 ### Frontend ###
 #### Libraries in use
