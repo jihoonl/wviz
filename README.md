@@ -29,8 +29,8 @@ Soon
 
 ### Current Status ###
 
-Collada : OK
-URDF    : OK
+- Collada : Done
+- URDF    : Done
 
 
 ### TODO ###
