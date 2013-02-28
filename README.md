@@ -11,12 +11,12 @@ The goal of this project is to provide a ROS(Robot Operating System) web 3d visu
 
 A robot powered by ROS, Rosbridge, TF2 Web Republisher
 
-ROS                 : http://www.ros.org
-rosbridge           : https://www.rosbridge.org
-TF2 WebRepublisher  : https://github.com/RobotWebTools/tf2_web_republisher
+- ROS                 : http://www.ros.org
+- rosbridge           : https://www.rosbridge.org
+- TF2 WebRepublisher  : https://github.com/RobotWebTools/tf2_web_republisher
 
-roslaunch rosbridge_server rosbridge_websocket.launch
-rosrun tf2_web_republisher tf2_web_republisher
+* roslaunch rosbridge_server rosbridge_websocket.launch
+* rosrun tf2_web_republisher tf2_web_republisher
 
 ### Frontend ###
 
