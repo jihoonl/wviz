@@ -23,6 +23,7 @@ rosrun tf2_web_republisher tf2_web_republisher
 Available URDFs
 - PR2
 - Youbot
+- Kobuki
 
 Soon            
 - Turtlebot
