@@ -20,13 +20,17 @@ rosrun tf2_web_republisher tf2_web_republisher
 
 ### Frontend ###
 
-Available URDFs - PR2, Youbot
-Soon            - Turtlebot
+Available URDFs
+- PR2
+- Youbot
+
+Soon            
+- Turtlebot
 
 ### Current Status ###
 
-Collada : OK
-URDF    : OK
+- Collada : Done
+- URDF    : Done
 
 
 ### TODO ###
