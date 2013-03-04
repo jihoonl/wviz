@@ -42,4 +42,5 @@ Soon
 
 - WVIZ name spacing
 - split scenenode and model
+- Math library separation
 - Uglify process
