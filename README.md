@@ -36,6 +36,23 @@ Soon
 
 - Collada : Done
 - URDF    : Done
+- 
+
+### Goal ###
+
+- De-couple with a 3D library
+- Support URDF, Marker, IMMarker, Map, Pointclod, and Laserscan
+- Support topic re-configuration api
+- Support multi-canvas visualization(Ex : overlayview + full 3d view)
+- Support dynamic fixed frame
+
+### Design decision ###
+
+- Support three.js as default 3D library
+- Support AMD
+- Scene - Model separation
+- Have own math library
+
 
 
 # TODO ###
