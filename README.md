@@ -36,7 +36,7 @@ Soon
 
 - Collada : Done
 - URDF    : Done
-- 
+
 
 ### Goal ###
 
@@ -55,7 +55,7 @@ Soon
 
 
 
-# TODO ###
+### TODO ###
 
 - WVIZ name spacing
 - split scenenode and model
