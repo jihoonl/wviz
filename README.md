@@ -27,9 +27,7 @@ A robot powered by ROS, Rosbridge, TF2 Web Republisher
 ### Available URDFs
 - PR2
 - Youbot
-- Kobuki
-
-Soon            
+- Kobuki         
 - Turtlebot
 
 ### Current Status ###
