@@ -3,6 +3,9 @@ WVIZ - 3D Robot Web Visualizer
 
 The goal of this project is to provide a ROS(Robot Operating System) web 3d visualization library using WebGL. 
 
+![Turtlebot](https://f.cloud.github.com/assets/1556736/316629/5cae1274-982e-11e2-8cc7-c2af1537e054.png)
+
+
 ### Usage ###
 
 ### Required Components in Backend ###
