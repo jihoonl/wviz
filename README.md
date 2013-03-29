@@ -58,7 +58,11 @@ A robot powered by ROS, Rosbridge, TF2 Web Republisher
 
 ### TODO ###
 
-- WVIZ name spacing
-- split scenenode and model
-- Math library separation
-- Uglify process
+- Get Merged with ROS3DJS !
+
+### Pictures! ###
+
+![PR2](https://f.cloud.github.com/assets/1556736/317011/161947e6-9853-11e2-956d-ff1729cd6d6f.png)
+![Youbot](https://f.cloud.github.com/assets/1556736/317012/175106e4-9853-11e2-9b72-99e5f56da24f.png)
+![Kobuki](https://f.cloud.github.com/assets/1556736/317014/1ac51bb2-9853-11e2-8f77-4b234a6e0d08.png)
+
